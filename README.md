@@ -1,1 +1,1 @@
-# nginx-brotli
+# Nginx with Google Brotli

@@ -1,6 +1,6 @@
-FROM nginx:1.21.1 as build
+FROM nginx:1.21.6 as build
 
-ENV NGINX_VERSION=1.21.1
+ENV NGINX_VERSION=1.21.6
 
 LABEL maintainer="Ishtiyaq Husain <ishtiyq.husain@gmail.com>" Description="This is nginx web server with Google brotli compression" Vendor="Ishtiyaq Husain" Version="0.0.1"
 
@@ -20,7 +20,7 @@ RUN wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
   && chmod 644 /etc/nginx/modules/*.so
 
 
-FROM nginx:1.21.1
+FROM nginx:1.21.6
 
 COPY --from=build /nginx-${NGINX_VERSION}/objs/*.so /etc/nginx/modules/
 COPY nginx.conf /etc/nginx/nginx.conf
