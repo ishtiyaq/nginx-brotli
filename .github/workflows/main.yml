@@ -6,12 +6,21 @@ on:
       - '*'
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ishtiyaq/nginx-brotli:${GITHUB_REF#refs/tags/}
+#     - name: Build the Docker image
+#       run: docker build . --file Dockerfile --tag ishtiyaq/nginx-brotli:${GITHUB_REF#refs/tags/}
+    
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: ishtiyaq/nginx-brotli:${GITHUB_REF#refs/tags/}
