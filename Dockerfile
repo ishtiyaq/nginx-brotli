@@ -1,8 +1,8 @@
-FROM nginx:1.23.2 as build
+FROM nginx:1.23.3 as build
 
-ENV NGINX_VERSION=1.23.2
+ENV NGINX_VERSION=1.23.3
 
-LABEL maintainer="Ishtiyaq Husain <ishtiyq.husain@gmail.com>" Description="This is nginx web server with Google brotli compression" Vendor="Ishtiyaq Husain" Version="1.23.2"
+LABEL maintainer="Ishtiyaq Husain <ishtiyq.husain@gmail.com>" Description="This is nginx web server with Google brotli compression" Vendor="Ishtiyaq Husain" Version="1.23.3"
 
 RUN apt-get update \
   && apt -y --no-install-recommends install build-essential git wget libpcre3 libpcre3-dev zlib1g zlib1g-dev openssl libssl-dev
@@ -20,7 +20,7 @@ RUN wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
   && chmod 644 /etc/nginx/modules/*.so
 
 
-FROM nginx:1.23.2
+FROM nginx:1.23.3
 
 COPY --from=build /nginx-${NGINX_VERSION}/objs/*.so /etc/nginx/modules/
 COPY nginx.conf /etc/nginx/nginx.conf
