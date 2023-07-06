@@ -1,6 +1,6 @@
-FROM nginx:1.23.3 as build
+FROM nginx:1.25.1 as build
 
-ENV NGINX_VERSION=1.23.3
+ENV NGINX_VERSION=1.25.1
 
 LABEL maintainer="Ishtiyaq Husain <ishtiyq.husain@gmail.com>" Description="This is nginx web server with Google brotli compression" Vendor="Ishtiyaq Husain" Version="1.23.3"
 
