@@ -1,4 +1,4 @@
-ARG NGINX_VERSION=1.27
+ARG NGINX_VERSION=1.29.8
 
 FROM nginx:${NGINX_VERSION} as build
 
@@ -21,7 +21,7 @@ RUN wget https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz \
 
 
 FROM nginx:${NGINX_VERSION}
-
+ARG NGINX_VERSION
 COPY --from=build /nginx-${NGINX_VERSION}/objs/*.so /etc/nginx/modules/
 COPY nginx.conf /etc/nginx/nginx.conf
 
